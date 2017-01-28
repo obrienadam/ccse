@@ -16,18 +16,25 @@
         <div class="row">
             <div class="col-lg-12">
                 <h4>Title: {{ presentation.title }}</h4>
-                <p>Speakers:
-                    {% for speaker in presentation.presenter_set.all %}
+                {% for speaker in presentation.presenter_set.all %}
+                    <p>
                         {% if speaker.website %}
-                            <a href="{{ speaker.website }}">{{ speaker }}</a>
+                            <a href="{{ speaker.website }}">{{ speaker }}</a>,
                         {% else %}
-                            {{ speaker }}
+                            {{ speaker }},
                         {% endif %}
-                        {% if not forloop.last %}
-                            ,
+                        {% if speaker.affiliation.university.website %}
+                            <a href="{{ speaker.affiliation.university.website }}">{{ speaker.affiliation.university }}</a> --
+                        {% else %}
+                            {{ speaker.affiliation.university }} --
                         {% endif %}
-                    {% endfor %}
-                </p>
+                        {% if speaker.affiliation.website %}
+                            <a href="{{ speaker.affiliation.website }}">{{ speaker.affiliation }}</a>
+                        {% else %}
+                            {{ speaker.affiliation }}
+                        {% endif %}
+                    </p>
+                {% endfor %}
                 <h4>Abstract:
                     {% if presentation.pdf_abstract %}
                         <a href="{{ presentation.pdf_abstract.url }}">PDF</a>

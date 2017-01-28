@@ -53,6 +53,22 @@ class Presentation(models.Model):
 
         return presenters[:-2]
 
+class University(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    website = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return '{}, {} {}'.format(self.name, self.city, self.country)
+
+class Department(models.Model):
+    university = models.ForeignKey(University)
+    name = models.CharField(max_length=255)
+    website = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 class Presenter(models.Model):
     NONE = 0
@@ -65,12 +81,13 @@ class Presenter(models.Model):
         (2, 'Prof.'),
     )
 
-    presentation = models.ForeignKey(Presentation)
+    presentation = models.ManyToManyField(Presentation, blank=True)
+    affiliation = models.ForeignKey(Department, on_delete=None, blank=True, null=True)
+
     first_name = models.CharField(max_length=255)
     middle_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255)
     honorary = models.PositiveSmallIntegerField(choices=HONORARY_TYPES, default=NONE)
-    affiliation = models.CharField(max_length=255, blank=True, null=True)
     website = models.URLField(blank=True, null=True)
 
     def __str__(self):

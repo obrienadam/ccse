@@ -2,20 +2,65 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
+            <h1>Computing Facilities</h1>
             <h1>
                 <a href="https://www.scinethpc.ca"><img src="http://www.scinethpc.ca/wp-content/uploads/2011/08/SciNetLogoTransparentSmall.png"></a>
             </h1>
             <p>
-                SciNet is Canada’s largest supercomputing centre, providing Canadian researchers with computational
-                resources and expertise necessary to perform their research on scales not previously possible in Canada.
-                We help power work from the biomedical sciences and aerospace engineering to astrophysics and climate
-                science. SciNet — which provides resources for Compute/Calcul Canada, a national infrastructure for
-                supercomputing-powered research, and SOSCIP, a Southern Ontario infrastructure for driving innovation —
-                is funded by the Canada Foundation for Innovation, NSERC, the Government of Ontario, Fed Dev Ontario,
-                and the University of Toronto.
+                Large scale computations are made possible through High Performance Computing (HPC) facilities. The
+                University of Toronto's primary computing facility is <a href="https://www.scinethpc.ca">Scinet</a>,
+                Canada's largest supercomputer centre, which also provides resources for
+                <a href="https://www.computecanada.ca/">Compute/Calcul Canada</a>, a national infrastructure of for
+                supercomputing research. SciNet was established in 2009 as a consortium of the University of Toronto and
+                its affiliated research hospitals.
+                A large spectrum of computational research takes place on SciNet including astrophysics, astronomy,
+                fluid dynamics, structures, biomedical engineering, material science, electrical engineering and many
+                more. In addition to providing computing resources and technical support, SciNet also offers a wide
+                variety of courses and specialized training. For more information, visit Scinet's
+                <a href="https://www.scinethpc.ca/training-outreach-and-education/">training and education page</a>.
+
             </p>
+            <h2>Systems</h2>
             <p>
-                To find out more, visit the <a href="https://www.scinethpc.ca">official SciNet webpage</a>.
+                Multiple systems have been installed at the SciNet Centre. A brief description of a few select sytems
+                is given below.
+            </p>
+            <h3>General Purpose Cluster (GPC)</h3>
+            <p>
+                The General Purpose Cluster is a large cluster consisting of 3,780 nodes with 16 GB of memory or more
+                and 8 Intel cores each. The nodes use a shared parallel file system and have no local disks. The compute
+                nodes are accessed through a queuing system that allows jobs with a minimum of 15 minutes and maximum
+                wall time of 48 hours . The GPC is an IBM iDataPlex cluster based on Intel's Nehalem architecture
+                (one of the first in the world to make use of the new chips). The GPC consists of 3,780 nodes
+                (IBM iDataPlex DX360M2) with a total of 30,912 cores (Intel Xeon E5540) at 2.53GHz, with 16GB RAM per
+                node (2GB per core). Approximately one quarter of the cluster is interconnected with non-blocking DDR
+                InfiniBand while the rest of the nodes are connected with 5:1 blocked QDR InfiniBand.
+                From an operational standpoint, the contributed systems Gravity and Sandy, as well as the Viz system,
+                are more or less part of the GPC. For more information, visit the
+                <a href="https://wiki.scinet.utoronto.ca/wiki/index.php/GPC_Quickstart">GPC quickstart</a> wiki page.
+            </p>
+            <h3>Tightly Coupled System (TCS)</h3>
+            <p>
+                The TCS is a cluster of high memory, many-core IBM Power 575 nodes, each with 4.7GHz Power 6 processors
+                on a very fast infiniband interconnect. At ~3,000 cores it is relatively small when compared to the GPC,
+                and is dedicated for jobs requiring a large memory/low latency configuration. Each node contains 16
+                processors, each with 2 independant cores. At least 32 tasks are required to fully utlize a single node.
+                For more information, visit the <a href="https://wiki.scinet.utoronto.ca/wiki/index.php/TCS_Quickstart">
+                TCS quickstart</a> wiki page.
+            </p>
+            <h3>Sandybridge (Sandy)</h3>
+            <p>
+                The Sandy cluster consists of 76 x86_64 nodes with two octal Intel Xeon E5-2650 2.0GHz CPUs with 64GB of
+                RAM per node. The nodes are interconnected with 2.6:1 blocking QDR Infiniband for MPI communications and
+                disk I/O to the SciNet GPFS filesystems. In total this cluster contains 1216 x86_64 cores with 4,864 GB
+                of total RAM. Sandy is a user-contributed system. For more information, visit the
+                <a href="https://wiki.scinet.utoronto.ca/wiki/index.php/Sandy">Sandy quickstart</a> wiki page.
+            </p>
+            <h3>Wiki</h3>
+            <p>
+                The SciNet team maintains a wiki page, complete with a system status page, descriptions of all available
+                systems, planned maintenance, tutorials and documentation. To visit the wiki,
+                <a href="https://wiki.scinet.utoronto.ca/wiki/index.php/SciNet_User_Support_Library">click here</a>.
             </p>
         </div>
     </div>
