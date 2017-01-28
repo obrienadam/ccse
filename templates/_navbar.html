@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default primary-navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="primary-navbar">
+            <ul class="nav navbar-nav">
+                <li id="home-link"><a class="nav-menu-link nav-separator-left nav-separator-right" href="{% url 'pages:home' %}">Home</a></li>
+
+                <li id="about-link" class="dropdown">
+                    <a class="nav-menu-link dropdown-toggle nav-separator-right" data-toggle="dropdown" href="">About <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'pages:overview' %}">Overview</a></li>
+                        <li><a href="{% url 'pages:people' %}">People</a></li>
+                    </ul>
+                </li>
+
+                <li id="events-link"><a class="nav-menu-link nav-separator-right" href="{% url 'events:events' %}">Events</a></li>
+
+                <li id="research-link" class="dropdown">
+                    <a class="dropdown-toggle nav-menu-link nav-separator-right" data-toggle="dropdown" href="#">Research <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'news:news' %}">News</a></li>
+                        <li><a href="{% url 'groups:groups' %}">Groups</a></li>
+                    </ul>
+                </li>
+
+                <li id="computing-link" class="dropdown">
+                    <a class="nav-menu-link dropdown-toggle nav-separator-right" data-toggle="dropdown" href="#">Computing <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'pages:computing-facilities' %}">Facilities</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

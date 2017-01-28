@@ -1,0 +1,338 @@
+body, p {
+    font-size: 14px;
+    color: #001937;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+div, img, p {
+    max-width: 100%
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.h1, h1 {
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #002a5c
+}
+
+.h2, h2 {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #1996b8;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700
+}
+
+.h3, h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #4c698d;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.h4, h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+
+a {
+    color: #4d75a8;
+    cursor: pointer
+}
+
+#page {
+    position: relative;
+    overflow-x: hidden
+}
+
+.leftCol {
+    float: left
+}
+
+.rightCol {
+    float: right
+}
+
+.container {
+    min-width: 320px
+}
+
+.display-posts-listing {
+    margin-top: 20px
+}
+
+.page-header {
+    margin-top: 0
+}
+
+.body ul {
+    padding-left: 20px
+}
+
+ul.no-bullets {
+    list-style: none;
+    padding-left: 0
+}
+
+.btn-label {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    float: left
+}
+
+.site-logo-link {
+    width: 200px;
+    height: 73px
+}
+
+.site-logo {
+    width: 200px;
+    height: 73px;
+    display: inline-block;
+    margin: 0
+}
+
+object.site-logo {
+    pointer-events: none
+}
+
+.site-logo:hover {
+    cursor: pointer
+}
+
+.site-name {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #002a5c;
+    font-weight: 700
+}
+
+.site-name a {
+    color: #002a5c;
+    line-height: 1.1;
+    margin-top: 8px
+}
+
+.site-name a:hover {
+    color: #09c;
+    text-decoration: none
+}
+
+@media only screen and (min-width: 320px) {
+    .site-header {
+        padding-top: 15px;
+        padding-bottom: 15px
+    }
+
+    .site-logo-link {
+        float: none;
+        display: inline-block;
+        margin-left: 0;
+        width: 180px;
+        height: 66px
+    }
+
+    .site-logo {
+        width: 180px;
+        height: 66px;
+        display: block;
+        margin: 0
+    }
+
+    .site-name {
+        display: block;
+        width: 100%;
+        border-top: 5px solid #002a5c;
+        font-size: 16px;
+        background: #e5e5e5;
+        padding: 10px 20px;
+        margin: 10px 0 0
+    }
+
+    .site-name a {
+        font-size: 19px
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .site-header {
+        padding-top: 15px;
+        padding-bottom: 15px
+    }
+
+    .site-logo-link {
+        width: 180px;
+        height: 66px
+    }
+
+    .site-logo {
+        width: 180px;
+        height: 66px;
+        display: block;
+        margin: 0
+    }
+
+    .site-name a {
+        font-size: 21px
+    }
+}
+
+@media (min-width: 768px) {
+    .site-header {
+        padding-top: 15px;
+        padding-bottom: 15px
+    }
+
+    .site-header .container {
+        position: relative
+    }
+
+    .site-logo-link {
+        float: left;
+        display: inline-block;
+        width: 200px;
+        height: 73px
+    }
+
+    .site-logo {
+        width: 200px;
+        height: 73px;
+        display: inline-block;
+        margin: 0
+    }
+
+    .site-name {
+        float: left;
+        display: inline-block;
+        max-width: 400px;
+        font-size: 26px;
+        padding: 0 0 0 25px;
+        border: none;
+        border-left: 2px solid #002a5c;
+        background: 0 0;
+        margin: 22px 0 0 20px;
+        height: 43px
+    }
+
+    .site-name a {
+        display: block
+    }
+
+    .site-name > a > span {
+        padding: 0;
+        margin: 0;
+        display: block;
+        font-weight: 300;
+        font-size: .9em;
+        font-family: 'Open Sans Condensed', sans-serif
+    }
+}
+
+@media (min-width: 992px) {
+    .site-header {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+
+    .site-logo-link {
+        float: left;
+        display: inline-block;
+        width: 255px;
+        height: 93px
+    }
+
+    .site-logo {
+        width: 255px;
+        height: 93px;
+        display: inline-block;
+        margin-top: 0
+    }
+
+    .site-name {
+        float: left;
+        display: table;
+        padding: 0 0 0 25px;
+        border: none;
+        border-left: 2px solid #002a5c;
+        background: 0 0;
+        margin: 27px 0 0 20px;
+        height: 55px
+    }
+
+    .site-name a {
+        display: table-cell;
+        font-size: 26px;
+        line-height: 1.2;
+        vertical-align: middle
+    }
+
+    .site-name > a > span {
+        padding: 0;
+        margin: 0;
+        display: block;
+        font-weight: 300;
+        font-size: .9em;
+        font-family: 'Open Sans Condensed', sans-serif
+    }
+}
+
+.nav-menu-link {
+    font-size: 18px;
+    font-weight: 400;
+    color: #002a5c!important;
+}
+
+.nav-separator-right {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #e5e5e5!important;
+}
+
+.nav-separator-left {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #e5e5e5!important;
+}
+
+.nav-menu-link {
+    min-width: 125px;
+    text-align: center;
+}
+
+.nav-menu-link:hover, .nav-menu-link:focus {
+    color: #09c!important;
+}
+
+.active a {
+    font-weight: 600;
+}
+
+.update-title {
+    font-size: 20px;
+    background-color: #e5e5e5;
+    padding: 10px;
+}
+
+#page .container {
+    padding-left: 30px;
+    padding-right-right: 30px;
+}
+
+hr {
+  border-top:1px dotted #e5e5e5;
+  height:1px;
+  width:100%;
+}

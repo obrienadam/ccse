@@ -1,0 +1,13 @@
+{% extends '__base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>{{ article.title }}</h1>
+            <p>
+                {% autoescape off %}
+                    {{ article.content }}
+                {% endautoescape %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

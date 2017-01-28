@@ -1,0 +1,33 @@
+{% extends '__base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Latest News</h1>
+            {% for item in news %}
+                <h3>
+                    <a href="{% url 'news:article' item.pk %}">{{ item.title }}</a>
+                </h3>
+                <p>
+                    {{ item.date_added.date }} - {{ item.abstract }}... <a href="{% url 'news:article' item.pk %}">Read More</a>
+                </p>
+                <hr>
+            {% empty %}
+                <p>No news items to display.</p>
+            {% endfor %}
+        <h4><a href="{% url 'news:news' %}">More news >></a></h4>
+        </div>
+        <div class="col-md-4">
+            <h1 class="update-title">Upcoming Events</h1>
+            <ul>
+                {% for event in events %}
+                    <li class="h4">
+                        <a href="{% url 'events:event' event.pk %}">
+                            {{ event }}
+                        </a>
+                    </li>
+                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

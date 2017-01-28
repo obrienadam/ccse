@@ -1,0 +1,49 @@
+{% extends '__base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>{{ event }}</h1>
+            <strong>Date/Time:</strong> {{ event.date }} from {{ event.get_start }} - {{ event.get_end }}<br>
+            <strong>Location:</strong> {{ event.location }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Presentations</h2>
+        </div>
+    </div>
+    {% for presentation in event.presentation_set.all %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Title: {{ presentation.title }}</h4>
+                <p>Speakers:
+                    {% for speaker in presentation.presenter_set.all %}
+                        {% if speaker.website %}
+                            <a href="{{ speaker.website }}">{{ speaker }}</a>
+                        {% else %}
+                            {{ speaker }}
+                        {% endif %}
+                        {% if not forloop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <h4>Abstract:
+                    {% if presentation.pdf_abstract %}
+                        <a href="{{ presentation.pdf_abstract.url }}">PDF</a>
+                    {% endif %}
+                </h4>
+                <p>
+                    {% if presentation.abstract %}
+                        {{ presentation.abstract }}
+                    {% elif not presentation.pdf_abstract %}
+                        No abstract provided.
+                    {% endif %}
+                </p>
+                <hr>
+            </div>
+        </div>
+    {% empty %}
+        <p>No presentation details have been uploaded yet. Please check back.</p>
+    {% endfor %}
+{% endblock %}

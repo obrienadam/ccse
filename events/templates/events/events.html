@@ -1,0 +1,53 @@
+{% extends '__base.html' %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-lg-12">
+        <h1>CCSE Events</h1>
+    </div>
+        <div class="col-md-12">
+            <h2>Upcoming</h2>
+            <table class="table table-responsive">
+                <thead>
+                <th>Event</th>
+                <th>Date/Time</th>
+                <th>Location</th>
+                <th></th>
+                </thead>
+                <tbody>
+                {% for event in upcoming_events %}
+                    <tr>
+                        <td>{{ event }}</td>
+                        <td>{{ event.date }}<br>
+                            {{ event.get_start }} - {{ event.get_end }}</td>
+                        <td>{{ event.location }}</td>
+                        <td><a href="{% url 'events:event' event.pk %}">View Details</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <h2>Past</h2>
+            <table class="table table-responsive">
+                <thead>
+                <th>Event</th>
+                <th>Date/Time</th>
+                <th>Location</th>
+                <th></th>
+                </thead>
+                <tbody>
+                {% for event in past_events %}
+                    <tr>
+                        <td>{{ event }}</td>
+                        <td>{{ event.date }}<br>
+                            {{ event.get_start }} - {{ event.get_end }}</td>
+                        <td>{{ event.location }}</td>
+                        <td><a href="{% url 'events:event' event.pk %}">View Details</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load staticfiles %}
+<header class="site-header" role="banner">
+    <div class="container">
+        <a class="site-logo-link" href="http://www.utoronto.ca">
+            <img class="site-logo" src="{% static 'CCSE/img/UofTLogo.svg' %}">
+        </a>
+        <div class="site-name">
+            <a href="{% url 'pages:home' %}" title="Computational Centre for Science and Engineering" rel="home">
+                Computational Centre for Science and Engineering
+            </a>
+        </div>
+    </div>
+</header>
