@@ -19,7 +19,8 @@ class News(models.Model):
         ordering = ['-date_added']
 
     def abstract(self):
-        return strip_tags(self.content)[:255]
+        content = strip_tags(self.content)
+        return content[:content.find(' ', 255)]
 
     def __str__(self):
         return '{}: {}'.format(self.date_added.date(), self.title)

@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="row">
-    <div class="col-lg-12">
-        <h1>CCSE Events</h1>
-    </div>
+        <div class="col-lg-12">
+            <h1>CCSE Events</h1>
+        </div>
         <div class="col-md-12">
             <h2>Upcoming</h2>
             <table class="table table-responsive">
@@ -22,6 +22,10 @@
                             {{ event.get_start }} - {{ event.get_end }}</td>
                         <td>{{ event.location }}</td>
                         <td><a href="{% url 'events:event' event.pk %}">View Details</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No upcoming events currently scheduled. Check back soon!</td>
                     </tr>
                 {% endfor %}
                 </tbody>

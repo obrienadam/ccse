@@ -142,12 +142,12 @@ object.site-logo {
         display: inline-block;
         margin-left: 0;
         width: 180px;
-        height: 66px
+        height: 57px
     }
 
     .site-logo {
         width: 180px;
-        height: 66px;
+        height: 57px;
         display: block;
         margin: 0
     }
@@ -175,12 +175,12 @@ object.site-logo {
 
     .site-logo-link {
         width: 180px;
-        height: 66px
+        height: 57px
     }
 
     .site-logo {
         width: 180px;
-        height: 66px;
+        height: 57px;
         display: block;
         margin: 0
     }
@@ -203,13 +203,13 @@ object.site-logo {
     .site-logo-link {
         float: left;
         display: inline-block;
-        width: 200px;
-        height: 73px
+        width: 254px;
+        height: 80px
     }
 
     .site-logo {
-        width: 200px;
-        height: 73px;
+        width: 254px;
+        height: 80px;
         display: inline-block;
         margin: 0
     }
@@ -250,13 +250,13 @@ object.site-logo {
     .site-logo-link {
         float: left;
         display: inline-block;
-        width: 255px;
-        height: 93px
+        width: 381px;
+        height: 120px
     }
 
     .site-logo {
-        width: 255px;
-        height: 93px;
+        width: 381px;
+        height: 120px;
         display: inline-block;
         margin-top: 0
     }

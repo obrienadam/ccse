@@ -1,1 +1,18 @@
 {% extends '__base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>News</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-4">
+                <a href="{% url 'news:article' article.pk %}"><h4>{{ article.title }}</h4></a>
+                <p>{{ article.date_added.date }}</p>
+                <p>{% autoescape off %}{{ article.abstract }}{% endautoescape %}...</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
