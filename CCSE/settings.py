@@ -25,8 +25,11 @@ with open('/etc/secret_key.txt', 'r') as f:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['*']
 
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+else:
+    ALLOWED_HOSTS = ['arrow.utias.utoronto.ca']
 
 # Application definition
 
