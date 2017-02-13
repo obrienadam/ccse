@@ -3,3 +3,4 @@
 env
 static
 !CCSE/static
+db.sqlite3

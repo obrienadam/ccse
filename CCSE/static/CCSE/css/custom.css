@@ -326,6 +326,20 @@ object.site-logo {
     padding: 10px;
 }
 
+.widget {
+    padding-right: 0px;
+    min-height: 195px;
+}
+
+.widget ul {
+    padding-left: 20px;
+    font-weight: normal;
+}
+
+#copyright {
+    color: gray;
+}
+
 #page .container {
     padding-left: 30px;
     padding-right-right: 30px;

@@ -42,6 +42,14 @@
     <div class="container">
         <div style="margin-left: 15px;">
             {% block footer %}<hr style="border-style: solid;">{% endblock %}
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="mailto:dwz@oddjob.utias.utoronto.ca?Subject=Computational%20Science%20and%20Engineering%20Discussion%20Group">Contact Us</a>
+                </div>
+                <div class="col-lg-6" align="right" id="copyright">
+                    &copy UTIAS Computational Science and Engineering Discussion Group <span id="year"></span>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
@@ -62,6 +70,9 @@
         e.src='https://www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+<script>
+    $('#year').text(new Date().getFullYear());
 </script>
 </body>
 </html>

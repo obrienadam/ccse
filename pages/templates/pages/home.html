@@ -1,35 +1,75 @@
 {% extends '__base.html' %}
 {% block content %}
     <div class="row">
-        <div class="col-md-8">
-            <h1>Latest News</h1>
-            {% for item in news %}
-                <h3>
-                    <a href="{% url 'news:article' item.pk %}">{{ item.title }}</a>
-                </h3>
-                <p>
-                    {% autoescape off %}{{ item.date_added.date }} - {{ item.abstract }}{% endautoescape %}... <a href="{% url 'news:article' item.pk %}">Read More</a>
-                </p>
-                <hr>
-            {% empty %}
-                <p>No news items to display.</p>
-            {% endfor %}
-            <h4><a href="{% url 'news:news' %}">More news >></a></h4>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12 widget">
+                    <h1>Latest News</h1>
+                    {% for item in news %}
+                        <h3>
+                            <a href="{% url 'news:article' item.pk %}">{{ item.title }}</a>
+                        </h3>
+                        <p>
+                            {% autoescape off %}{{ item.date_added.date }} - {{ item.abstract }}{% endautoescape %}... <a href="{% url 'news:article' item.pk %}"><em>Read More</em></a>
+                        </p>
+                        <hr>
+                    {% empty %}
+                        <p>No news items to display.</p>
+                    {% endfor %}
+                    <h4><a href="{% url 'news:news' %}">More news &raquo</a></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 widget">
+                    <h1>Mailing List</h1>
+                    <p>
+                        For students and faculty who wish to join the mailing list in order to receive information
+                        about upcoming events directly, please contact
+                        <a href="mailto:dwz@oddjob.utias.utoronto.ca?Subject=Mailing%20List%3A%20Computational%20Science%20and%20Engineering%20Discussion%20Group">Prof. D.W. Zingg</a>.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h1 class="update-title">Upcoming Events</h1>
-            <ul>
-                {% for event in events %}
-                    <li class="h4">
-                        <a href="{% url 'events:event' event.pk %}">
-                            {{ event }}
-                        </a>
-                    </li>
-                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
-                {% empty %}
-                    <p>No upcoming events currently scheduled.</p>
-                {% endfor %}
-            </ul>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-12 widget">
+                    <h1 class="update-title">Upcoming Events</h1>
+                    <ul>
+                        {% for event in upcoming_events %}
+                            <li>
+                                <a href="{% url 'events:event' event.pk %} ">
+                                    {{ event }}
+                                </a>
+                                <p>
+                                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
+                                </p>
+                            </li>
+                        {% empty %}
+                            <p>No upcoming events currently scheduled.</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-12 widget">
+                    <h1 class="update-title">Recent Past Events</h1>
+                    <ul>
+                        {% for event in past_events %}
+                            <li>
+                                <a href="{% url 'events:event' event.pk %} ">
+                                    {{ event }}
+                                </a>
+                                <p>
+                                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
+                                </p>
+                            </li>
+                        {% empty %}
+                            <p>No past events.</p>
+                        {% endfor %}
+                        <li>
+                            <a href="{% url 'events:events' %}">View all events &raquo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

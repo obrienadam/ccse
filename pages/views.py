@@ -7,11 +7,13 @@ from news.models import News
 
 class HomeView(View):
     def get(self, request):
-        events = Event.objects.filter(date__gte=timezone.now()).order_by('date', 'start_time')
+        upcoming_events = Event.objects.filter(date__gte=timezone.now()).order_by('date', 'start_time')[:3]
+        past_events = Event.objects.filter(date__lt=timezone.now()).order_by('-date', '-start_time')[:3]
         news = News.objects.all()[:6]
 
         return render(request, 'pages/home.html', {
-            'events': events,
+            'upcoming_events': upcoming_events,
+            'past_events': past_events,
             'news': news
         })
 
