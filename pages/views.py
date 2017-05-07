@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, ListView
 from django.utils import timezone
 
 from events.models import Event
 from news.models import News
+from pages.models import StudentOrganizer
 
 class HomeView(View):
     def get(self, request):
@@ -20,8 +21,9 @@ class HomeView(View):
 class OverviewView(TemplateView):
     template_name = 'pages/overview.html'
 
-class PeopleView(TemplateView):
-    template_name = 'pages/people.html'
+class PeopleView(View):
+    def get(self, request):
+        return render(request, 'pages/people.html', {'students': StudentOrganizer.objects.all()})
 
 class ComputingFacilities(TemplateView):
     template_name = 'pages/computing_facilities.html'

@@ -46,7 +46,6 @@ div, img, p {
     margin-bottom: 10px
 }
 
-
 a {
     color: #4d75a8;
     cursor: pointer
@@ -292,19 +291,19 @@ object.site-logo {
 .nav-menu-link {
     font-size: 18px;
     font-weight: 400;
-    color: #002a5c!important;
+    color: #002a5c !important;
 }
 
 .nav-separator-right {
     border-right-style: solid;
     border-right-width: 1px;
-    border-right-color: #e5e5e5!important;
+    border-right-color: #e5e5e5 !important;
 }
 
 .nav-separator-left {
     border-left-style: solid;
     border-left-width: 1px;
-    border-left-color: #e5e5e5!important;
+    border-left-color: #e5e5e5 !important;
 }
 
 .nav-menu-link {
@@ -313,7 +312,7 @@ object.site-logo {
 }
 
 .nav-menu-link:hover, .nav-menu-link:focus {
-    color: #09c!important;
+    color: #09c !important;
 }
 
 .active a {
@@ -346,7 +345,13 @@ object.site-logo {
 }
 
 hr {
-  border-top:1px dotted #e5e5e5;
-  height:1px;
-  width:100%;
+    border-top: 1px dotted #e5e5e5;
+    height: 1px;
+    width: 100%;
+}
+
+.student-organizer {
+    display: block;
+    height: 256px;
+    width: auto;
 }

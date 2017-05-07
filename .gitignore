@@ -4,3 +4,5 @@ env
 static
 !CCSE/static
 db.sqlite3
+media
+CCSE/server_settings.py

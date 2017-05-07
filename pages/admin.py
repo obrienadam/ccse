@@ -1,3 +1,6 @@
 from django.contrib import admin
+from models import StudentOrganizer
 
-# Register your models here.
+@admin.register(StudentOrganizer)
+class StudentOrganizerAdmin(admin.ModelAdmin):
+    pass

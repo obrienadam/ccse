@@ -1,15 +1,22 @@
 {% extends '__base.html' %}
+{% load staticfiles %}
+
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
             <h1>Student Organizing Committee</h1>
-            <p>
-                Under construction.
-            </p>
-            <h1>Professors</h1>
-            <p>
-                Under construction.
-            </p>
         </div>
+        {% for student in students %}
+            <div class="col-lg-4">
+                {% if student.photo %}
+                    <img src="{{ student.photo.url }}" class="student-organizer">
+                {% else %}
+                    <img src="{% static 'CCSE/img/stock_person_photo.png' %}" class="student-organizer">
+                {% endif %}
+                <h4>{{ student.name }}</h4>
+                <div class="h4">Email: <a href="mailto:{{ student.email }}?Subject=CCSE%20Inquiry">{{ student.email }}</a></div>
+                <p>{{ student.bio }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
