@@ -355,3 +355,12 @@ hr {
     height: 256px;
     width: auto;
 }
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.col-sm-4 {
+ flex: 1;
+}
