@@ -19,7 +19,11 @@
                     <tr>
                         <td>{{ event }}</td>
                         <td>{{ event.date }}<br>
-                            {{ event.get_start }} - {{ event.get_end }}</td>
+                            {% if event.start_time %}
+                                {{ event.get_start }} - {{ event.get_end }}</td>
+                            {% else %}
+                                Time TBD
+                            {% endif %}
                         <td>{{ event.location }}</td>
                         <td><a href="{% url 'events:event' event.pk %}">View Details</a></td>
                     </tr>
@@ -45,7 +49,12 @@
                     <tr>
                         <td>{{ event }}</td>
                         <td>{{ event.date }}<br>
-                            {{ event.get_start }} - {{ event.get_end }}</td>
+                            {% if event.start_time %}
+                                {{ event.get_start }} - {{ event.get_end }}
+                            {% else %}
+                                Time TBD
+                            {% endif %}
+                        </td>
                         <td>{{ event.location }}</td>
                         <td><a href="{% url 'events:event' event.pk %}">View Details</a></td>
                     </tr>

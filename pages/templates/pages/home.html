@@ -41,7 +41,12 @@
                                     {{ event }}
                                 </a>
                                 <p>
-                                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
+                                    {{ event.date }}
+                                    {% if event.start_time %}
+                                        {{ event.get_start }} - {{ event.get_end }}
+                                    {% else %}
+                                        Time TBD
+                                    {% endif %} in {{ event.location }}
                                 </p>
                             </li>
                         {% empty %}
@@ -58,7 +63,11 @@
                                     {{ event }}
                                 </a>
                                 <p>
-                                    {{ event.date }} {{ event.get_start }} - {{ event.get_end }} in {{ event.location }}
+                                    {% if event.start_time %}
+                                        {{ event.get_start }} - {{ event.get_end }}
+                                    {% else %}
+                                        Time TBD
+                                    {% endif %} in {{ event.location }}
                                 </p>
                             </li>
                         {% empty %}

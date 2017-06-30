@@ -5,4 +5,5 @@ static
 !CCSE/static
 db.sqlite3
 media
-CCSE/server_settings.py
+ccse/server_settings.py
+ccse/secret_key.txt

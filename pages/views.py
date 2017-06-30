@@ -8,8 +8,8 @@ from pages.models import StudentOrganizer
 
 class HomeView(View):
     def get(self, request):
-        upcoming_events = Event.objects.filter(date__gte=timezone.now()).order_by('date', 'start_time')[:3]
-        past_events = Event.objects.filter(date__lt=timezone.now()).order_by('-date', '-start_time')[:3]
+        upcoming_events = Event.objects.filter(date__gte=timezone.now(), visible=True).order_by('date', 'start_time')[:3]
+        past_events = Event.objects.filter(date__lt=timezone.now(), visible=True).order_by('-date', '-start_time')[:3]
         news = News.objects.all()[:6]
 
         return render(request, 'pages/home.html', {

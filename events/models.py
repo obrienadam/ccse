@@ -17,8 +17,8 @@ class Event(models.Model):
     event_type = models.SmallIntegerField(choices=EVENT_TYPES, default=SEMINAR)
     title = models.CharField(max_length=128)
     date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
 
     location = models.CharField(max_length=255)
     visible = models.BooleanField(default=False)
@@ -29,10 +29,13 @@ class Event(models.Model):
         ordering = ['-date', '-start_time', '-end_time']
 
     def get_start(self):
-        return self.start_time.strftime('%I:%M %p')
+        return self.start_time.strftime('%I:%M %p') if self.start_time else ''
 
     def get_end(self):
-        return self.end_time.strftime('%I:%M %p')
+        return self.end_time.strftime('%I:%M %p') if self.end_time else ''
+
+    def time_slot(self):
+        return '{} - {}'.format(self.get_start(), self.get_end()) if self.start_time else 'TBD'
 
     def __str__(self):
         return '{}: {}'.format(self.get_event_type_display(), self.title)

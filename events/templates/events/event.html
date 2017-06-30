@@ -3,7 +3,12 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>{{ event }}</h1>
-            <strong>Date/Time:</strong> {{ event.date }} from {{ event.get_start }} - {{ event.get_end }}<br>
+            <strong>Date/Time:</strong> {{ event.date }}
+            {% if event.start_time %}
+                from {{ event.get_start }} - {{ event.get_end }}<br>
+            {% else %}
+                TBD
+            {% endif %}
             <strong>Location:</strong> {{ event.location }}
         </div>
     </div>

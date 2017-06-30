@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'CCSE.urls'
+ROOT_URLCONF = 'ccse.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CCSE.wsgi.application'
+WSGI_APPLICATION = 'ccse.wsgi.application'
 
 
 # Database
@@ -132,7 +132,7 @@ STATIC_URL = '/ccse/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'CCSE/static'),
+    os.path.join(BASE_DIR, 'ccse/static'),
 ]
 
 MEDIA_URL = '/ccse/media/'

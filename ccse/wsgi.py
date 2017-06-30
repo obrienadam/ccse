@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CCSE.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccse.settings")
 
 application = get_wsgi_application()
