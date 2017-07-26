@@ -46,8 +46,11 @@ class Building(models.Model):
 
 class Room(models.Model):
     building = models.ForeignKey(Building)
-    number = models.CharField(max_length=16, unique=True)
+    number = models.CharField(max_length=16)
     max_occupancy = models.PositiveIntegerField(blank=True, null=True)
+
+    class Meta:
+        unique_together = (('building', 'number'),)
 
     def __str__(self):
         return '{} {}'.format(self.building.code, self.number)
