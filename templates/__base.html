@@ -41,10 +41,12 @@
 <footer id="footer">
     <div class="container">
         <div style="margin-left: 15px;">
-            {% block footer %}<hr style="border-style: solid;">{% endblock %}
+            {% block footer %}
+                <hr style="border-style: solid;">{% endblock %}
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="mailto:dwz@oddjob.utias.utoronto.ca?Subject=Centre%20for%20Computational%20Science%20and%20Engineering">Contact Us</a>
+                    <a href="mailto:dwz@oddjob.utias.utoronto.ca?Subject=Centre%20for%20Computational%20Science%20and%20Engineering">Contact
+                        Us</a>
                 </div>
                 <div class="col-lg-6" align="right" id="copyright">
                     &copy UTIAS Centre for Computational Science and Engineering <span id="year"></span>
@@ -62,17 +64,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!-- Google Analytics -->
 <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='https://www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-103289948-1', 'auto');
+    ga('send', 'pageview');
+
 </script>
+
 <script>
     $('#year').text(new Date().getFullYear());
 </script>
+
 </body>
 </html>

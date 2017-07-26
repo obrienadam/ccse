@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils import timezone
+from locations.models import Room
 
 class Event(models.Model):
     SEMINAR = 0
@@ -19,8 +19,8 @@ class Event(models.Model):
     date = models.DateField()
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
+    location = models.ForeignKey(Room, blank=True, null=True)
 
-    location = models.CharField(max_length=255)
     visible = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

@@ -46,7 +46,10 @@
                                         {{ event.get_start }} - {{ event.get_end }}
                                     {% else %}
                                         Time TBD
-                                    {% endif %} in {{ event.location }}
+                                    {% endif %}
+                                    {% if event.location %}
+                                        in {{ event.location }}
+                                    {% endif %}
                                 </p>
                             </li>
                         {% empty %}
@@ -67,7 +70,10 @@
                                         {{ event.get_start }} - {{ event.get_end }}
                                     {% else %}
                                         Time TBD
-                                    {% endif %} in {{ event.location }}
+                                    {% endif %}
+                                    {% if event.location %}
+                                        in {{ event.location }}
+                                    {% endif %}
                                 </p>
                             </li>
                         {% empty %}

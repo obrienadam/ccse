@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'ckeditor',
     'pages',
+    'locations',
     'events',
     'news',
     'groups',
