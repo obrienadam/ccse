@@ -1,22 +1,53 @@
 {% extends '__base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'events/custom.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
             <h1>{{ event }}</h1>
-            <strong>Date/Time:</strong> {{ event.date }}
-            {% if event.start_time %}
-                from {{ event.get_start }} - {{ event.get_end }}<br>
-            {% else %}
-                TBD
-            {% endif %}
-            <strong>Location:</strong> {{ event.location }}
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Date/Time</h4>
+            <p>
+                {{ event.date }}
+                {% if event.start_time %}
+                    from {{ event.get_start }} - {{ event.get_end }}<br>
+                {% else %}
+                    TBD<br>
+                {% endif %}
+            </p>
+            <h4>Location</h4>
+            <p>
+                {% if room %}
+                    {{ room.building.name }} ({{ room.building.code }} {{ room.number }})<br>
+                    {{ room.building.location.address_1 }}<br>
+                    {% if room.building.location.address_2 %}
+                        {{ room.building.location.address_2 }}<br>
+                    {% endif %}
+                    {{ room.building.location.city }}, {{ room.building.location.province }} {{ room.building.location.postal_code }}
+                {% else %}
+                    TBD
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="col-lg-6" id="map"></div>
+    </div>
+
     <div class="row">
         <div class="col-lg-12">
             <h2>Presentations</h2>
         </div>
     </div>
+
     {% for presentation in event.presentation_set.all %}
         <div class="row">
             <div class="col-lg-12">
@@ -58,4 +89,65 @@
     {% empty %}
         <p>No presentation details have been uploaded yet. Please check back.</p>
     {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places">
+    </script>
+
+
+
+    <script>
+        $(function () {
+            $.get({
+                url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                data: {
+                    address: '{{ room.building.address }}',
+                    key: '{{ google_api_key }}'
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data.status === 'OK')
+                    {
+                        results = data.results;
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 17,
+                            center: results[0].geometry.location,
+                        });
+
+                        for(var i = 0; i < results.length; ++i)
+                        {
+                            var infoWindow = new google.maps.InfoWindow();
+                            var service = new google.maps.places.PlacesService(map);
+
+                            service.getDetails({
+                                placeId: results[i].place_id,
+                            }, function (place, status) {
+                                console.log(place);
+                                var marker = new google.maps.Marker({
+                                    map: map,
+                                    position: place.geometry.location
+                                });
+
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infoWindow.setContent(
+                                        '<h5>' + place.name + '</h5>' +
+                                        '{{ room.building.code }} ' + '{{ room.number }}<br>' +
+                                        place.formatted_address + '<br>' +
+                                        place.formatted_phone_number + '<br>' +
+                                        '<a href="' + place.website + '"> ' + place.website + '</a><br>'
+                                    );
+
+                                    infoWindow.open(map, this);
+                                });
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

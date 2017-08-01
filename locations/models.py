@@ -25,6 +25,7 @@ class Location(models.Model):
     address_1 = models.CharField(max_length=128)
     address_2 = models.CharField(max_length=128, blank=True, null=True)
     postal_code = models.CharField(max_length=6)
+    place_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         if self.building:
@@ -43,6 +44,14 @@ class Building(models.Model):
     def save(self, **kwargs):
         super(Building, self).save(**kwargs)
         Room(building=self, number='TBD').save()
+
+    def address(self):
+        loc = self.location
+
+        if loc.address_2:
+            return '{}, {}, {}, {}, {} {}'.format(self.name, loc.address_1, loc.address_2, loc.city, loc.province, loc.postal_code)
+        else:
+            return '{}, {}, {}, {} {}'.format(self.name, loc.address_1, loc.city, loc.province, loc.postal_code)
 
 class Room(models.Model):
     building = models.ForeignKey(Building)
