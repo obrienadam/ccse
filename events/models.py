@@ -77,8 +77,8 @@ class Event(models.Model):
         super(Event, self).save(**kwargs)
 
 
-def __str__(self):
-    return '{}: {}'.format(self.get_event_type_display(), self.title)
+    def __str__(self):
+        return '{}: {}'.format(self.get_event_type_display(), self.title)
 
 
 class Presentation(models.Model):
