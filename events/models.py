@@ -73,7 +73,7 @@ class Event(models.Model):
 
         f.writelines(ics.Calendar(events=[e]))
 
-        self.ics_file = django.core.files.File(f)
+        self.ics_file = django.core.files.File(f, name='event.ics')
         super(Event, self).save(**kwargs)
 
 
