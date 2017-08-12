@@ -1,9 +1,14 @@
 {% extends '__base.html' %}
 {% load staticfiles %}
 
+{% block title %}
+    {{ event.title }} | {{ block.super }}
+{% endblock %}
+
 {% block css %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'events/custom.css' %}">
+    <script src="https://use.fontawesome.com/89f12af8be.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -37,6 +42,15 @@
                     TBD
                 {% endif %}
             </p>
+            {% if event.ics_file %}
+                <h4>Calendar</h4>
+                <p>
+                <i class="fa fa-download fa-2"></i>
+                    <a href="{{ event.ics_file.url }}" download="{{ event.pothole }}.ics">
+                        Download (.ics)
+                    </a>
+                </p>
+            {% endif %}
         </div>
 
         <div class="col-lg-6" id="map"></div>

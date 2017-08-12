@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^', include('pages.urls', namespace='pages')),
     url(r'^events/', include('events.urls', namespace='events')),
     url(r'^news/', include('news.urls', namespace='news')),
-    url(r'^groups/', include('groups.urls', namespace='groups')),
+    url(r'^research/', include('research.urls', namespace='research')),
 ]
 
 from django.conf import settings

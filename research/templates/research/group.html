@@ -1,0 +1,32 @@
+{% extends '__base.html' %}
+
+{% block title %}
+    {{ group.name }} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ group.name.title }}</h1>
+            {% if group.site %}
+                <p>
+                    <strong>Group website: </strong> <a href="{{ group.site }}">{{ group.site }}</a>
+                </p>
+            {% endif %}
+
+            {% if group.fields.all %}
+                <p>
+                    <strong>Field(s): </strong>
+                    {% for field in group.fields.all %}
+                        <a href="{% url 'research:field' field.slug %}">
+                            {{ field.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
+
+            {% autoescape off %}
+                {{ group.render_html }}
+            {% endautoescape %}
+        </div>
+    </div>
+{% endblock %}

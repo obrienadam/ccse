@@ -1,0 +1,31 @@
+{% extends '__base.html' %}
+
+{% block title %}
+    {{ field.keyword }} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ field.name }}</h1>
+            {% if field.description %}
+                {% autoescape off %}
+                    {{ field.render_description_html }}
+                {% endautoescape %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ field.name }} Groups</h2>
+            <ul class="body">
+                {% for group in field.group_set.all %}
+                    <li class="h4">
+                        <a href="{% url 'research:group' group.slug %}">{{ group.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

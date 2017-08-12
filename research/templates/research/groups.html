@@ -1,0 +1,32 @@
+{% extends '__base.html' %}
+
+{% block title %}
+    Research Groups | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row"> <!--
+        <div class="col-md-3 widget-left">
+            <h1 class="update-title">Contents</h1>
+        </div> -->
+        <div class="col-md-12">
+            <h1>Research Groups</h1>
+            <p>
+                The University of Toronto is home to many computational research groups, with world class
+                faculty and students from all around the world. Computational specialties range from fluid mechanics to
+                machine learning. This page serves as a directory for active computational research groups at
+                the University of Toronto.
+            </p>
+        </div>
+    </div>
+    {% for group in groups %}
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+                <h3>{{ group.name }}</h3>
+                <p>{{ group.render_abstract }}</p>
+                <p><a href="{% url 'research:group' group.slug %}">Read more &raquo;</a></p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

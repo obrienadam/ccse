@@ -21,16 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open(server_settings.SECRET_KEY_PATH, 'r') as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = server_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = server_settings.DEBUG
 
-if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-else:
-    ALLOWED_HOSTS = ['arrow.utias.utoronto.ca']
+ALLOWED_HOSTS = server_settings.ALLOWED_HOSTS
 
 # Application definition
 
@@ -47,7 +43,7 @@ INSTALLED_APPS = [
     'locations',
     'events',
     'news',
-    'groups',
+    'research',
 ]
 
 MIDDLEWARE = [
@@ -133,10 +129,8 @@ GOOGLE_API_KEY = server_settings.GOOGLE_API_KEY
 
 STATIC_URL = '/ccse/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ccse/static'),
-]
 
+# Media files
 MEDIA_URL = '/ccse/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'ckeditor')

@@ -1,7 +1,16 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import django.core.files
+
+import ics
+import datetime
+
 import locations.models
+
+def event_ics_file(instance, filename):
+    return 'events/{}/{}'.format(instance.title, filename)
+
 
 class Event(models.Model):
     SEMINAR = 0
@@ -21,12 +30,16 @@ class Event(models.Model):
     end_time = models.TimeField(blank=True, null=True)
     location = models.ForeignKey(locations.models.Room, blank=True, null=True)
     visible = models.BooleanField(default=False)
+    ics_file = models.FileField(blank=True, null=True, upload_to=event_ics_file)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-date', '-start_time', '-end_time']
+
+    def pothole(self):
+        return self.title.lower().replace(' ', '_')
 
     def get_start(self):
         return self.start_time.strftime('%I:%M %p') if self.start_time else ''
@@ -37,8 +50,34 @@ class Event(models.Model):
     def time_slot(self):
         return '{} - {}'.format(self.get_start(), self.get_end()) if self.start_time else 'TBD'
 
+    def save(self, **kwargs):
+        with open('event.ics', 'w+') as f:
+            begin = datetime.datetime(year=self.date.year,
+                                      month=self.date.month,
+                                      day=self.date.day,
+                                      hour=self.start_time.hour,
+                                      minute=self.start_time.minute)
+
+            end = datetime.datetime(year=self.date.year,
+                                    month=self.date.month,
+                                    day=self.date.day,
+                                    hour=self.end_time.hour,
+                                    minute=self.end_time.minute)
+
+            e = ics.Event(name=self.title,
+                          begin=begin,
+                          end=end,
+                          location=str(self.location))
+
+            f.writelines(ics.Calendar(events=[e]))
+
+            self.ics_file = django.core.files.File(f)
+            super(Event, self).save(**kwargs)
+
+
     def __str__(self):
         return '{}: {}'.format(self.get_event_type_display(), self.title)
+
 
 class Presentation(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
@@ -56,6 +95,7 @@ class Presentation(models.Model):
 
         return presenters[:-2]
 
+
 class University(models.Model):
     name = models.CharField(max_length=255, unique=True)
     city = models.CharField(max_length=255)
@@ -65,6 +105,7 @@ class University(models.Model):
     def __str__(self):
         return '{}, {} {}'.format(self.name, self.city, self.country)
 
+
 class Department(models.Model):
     university = models.ForeignKey(University)
     name = models.CharField(max_length=255)
@@ -72,6 +113,7 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Presenter(models.Model):
     NONE = 0

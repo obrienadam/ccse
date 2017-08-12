@@ -1,0 +1,32 @@
+{% extends '__base.html' %}
+
+{% block title %}
+    Research Fields | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Research Fields</h1>
+            <p>
+                There are many different fields of computational research undertaken at the University of Toronto.
+                Fields range from computational fluid mechanics to optimization. This page contains a list of some of
+                those fields, with information on various groups currently active within the field. Listing on this site
+                include groups involved in the following:
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="body">
+                {% for field in fields %}
+                    {% if field.group_set.all %}
+                        <li class="h4">
+                            <a href="{% url 'research:field' field.slug %}">{{ field.name }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
