@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.utils.html import strip_tags
 from ckeditor_uploader.fields import RichTextUploadingField
 
-
 class News(models.Model):
     title = models.CharField(max_length=255)
     content = RichTextUploadingField()

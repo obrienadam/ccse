@@ -5,8 +5,10 @@ import django.core.files
 
 import ics
 import datetime
+import StringIO
 
 import locations.models
+
 
 def event_ics_file(instance, filename):
     return 'events/{}/{}'.format(instance.title, filename)
@@ -51,32 +53,32 @@ class Event(models.Model):
         return '{} - {}'.format(self.get_start(), self.get_end()) if self.start_time else 'TBD'
 
     def save(self, **kwargs):
-        with open('event.ics', 'w+') as f:
-            begin = datetime.datetime(year=self.date.year,
-                                      month=self.date.month,
-                                      day=self.date.day,
-                                      hour=self.start_time.hour,
-                                      minute=self.start_time.minute)
+        f = StringIO.StringIO()
+        begin = datetime.datetime(year=self.date.year,
+                                  month=self.date.month,
+                                  day=self.date.day,
+                                  hour=self.start_time.hour,
+                                  minute=self.start_time.minute)
 
-            end = datetime.datetime(year=self.date.year,
-                                    month=self.date.month,
-                                    day=self.date.day,
-                                    hour=self.end_time.hour,
-                                    minute=self.end_time.minute)
+        end = datetime.datetime(year=self.date.year,
+                                month=self.date.month,
+                                day=self.date.day,
+                                hour=self.end_time.hour,
+                                minute=self.end_time.minute)
 
-            e = ics.Event(name=self.title,
-                          begin=begin,
-                          end=end,
-                          location=str(self.location))
+        e = ics.Event(name=self.title,
+                      begin=begin,
+                      end=end,
+                      location=str(self.location))
 
-            f.writelines(ics.Calendar(events=[e]))
+        f.writelines(ics.Calendar(events=[e]))
 
-            self.ics_file = django.core.files.File(f)
-            super(Event, self).save(**kwargs)
+        self.ics_file = django.core.files.File(f)
+        super(Event, self).save(**kwargs)
 
 
-    def __str__(self):
-        return '{}: {}'.format(self.get_event_type_display(), self.title)
+def __str__(self):
+    return '{}: {}'.format(self.get_event_type_display(), self.title)
 
 
 class Presentation(models.Model):
