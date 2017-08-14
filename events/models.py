@@ -32,7 +32,7 @@ class Event(models.Model):
     end_time = models.TimeField(blank=True, null=True)
     location = models.ForeignKey(locations.models.Room, blank=True, null=True)
     visible = models.BooleanField(default=False)
-    ics_file = models.FileField(blank=True, null=True, upload_to=event_ics_file)
+    ics_file = models.FileField(blank=True, null=True, upload_to=event_ics_file, max_length=None)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -53,27 +53,29 @@ class Event(models.Model):
         return '{} - {}'.format(self.get_start(), self.get_end()) if self.start_time else 'TBD'
 
     def save(self, **kwargs):
-        f = StringIO.StringIO()
-        begin = datetime.datetime(year=self.date.year,
-                                  month=self.date.month,
-                                  day=self.date.day,
-                                  hour=self.start_time.hour,
-                                  minute=self.start_time.minute)
+        if self.start_time and self.end_time:
+            f = StringIO.StringIO()
+            begin = datetime.datetime(year=self.date.year,
+                                      month=self.date.month,
+                                      day=self.date.day,
+                                      hour=self.start_time.hour,
+                                      minute=self.start_time.minute)
 
-        end = datetime.datetime(year=self.date.year,
-                                month=self.date.month,
-                                day=self.date.day,
-                                hour=self.end_time.hour,
-                                minute=self.end_time.minute)
+            end = datetime.datetime(year=self.date.year,
+                                    month=self.date.month,
+                                    day=self.date.day,
+                                    hour=self.end_time.hour,
+                                    minute=self.end_time.minute)
 
-        e = ics.Event(name=self.title,
-                      begin=begin,
-                      end=end,
-                      location=str(self.location))
+            e = ics.Event(name=self.title,
+                          begin=begin,
+                          end=end,
+                          location=str(self.location))
 
-        f.writelines(ics.Calendar(events=[e]))
+            f.writelines(ics.Calendar(events=[e]))
 
-        self.ics_file = django.core.files.File(f, name='event.ics')
+            self.ics_file = django.core.files.File(f, name='event.ics')
+
         super(Event, self).save(**kwargs)
 
 
