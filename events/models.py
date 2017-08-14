@@ -67,12 +67,12 @@ class Event(models.Model):
                                     hour=self.end_time.hour,
                                     minute=self.end_time.minute)
 
-            e = ics.Event(name=self.title,
-                          begin=begin,
-                          end=end,
-                          location=str(self.location))
-
-            f.writelines(ics.Calendar(events=[e]))
+            f.writelines(ics.Calendar(events=[ics.Event(
+                name=self.title,
+                begin=begin,
+                end=end,
+                location=str(self.location)
+            )]))
 
             self.ics_file = django.core.files.File(f, name='event.ics')
 

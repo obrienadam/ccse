@@ -55,7 +55,7 @@ class Group(models.Model):
         for img in self.image_set.all():
             imgs += '\n[{}]: {}'.format(img.tag, img.img.url)
 
-        return markdown.markdown(self.description + imgs)
+        return markdown.markdown(self.description + imgs, extensions=['markdown.extensions.attr_list'])
 
 def image_file_path(instance, filename):
     return 'groups/{}/{}'.format(instance.group.slug, filename)
