@@ -2,13 +2,13 @@ from __future__ import unicode_literals
 
 from django.db import models
 import django.core.files
+from django.conf import settings
 
 import ics
-import datetime
-import StringIO
+import pytz, datetime
+import cStringIO
 
 import locations.models
-
 
 def event_ics_file(instance, filename):
     return 'events/{}/{}'.format(instance.title, filename)
@@ -53,8 +53,7 @@ class Event(models.Model):
         return '{} - {}'.format(self.get_start(), self.get_end()) if self.start_time else 'TBD'
 
     def save(self, **kwargs):
-        if self.start_time and self.end_time:
-            f = StringIO.StringIO()
+        if self.date and self.start_time and self.end_time:
             begin = datetime.datetime(year=self.date.year,
                                       month=self.date.month,
                                       day=self.date.day,
@@ -67,17 +66,25 @@ class Event(models.Model):
                                     hour=self.end_time.hour,
                                     minute=self.end_time.minute)
 
-            f.writelines(ics.Calendar(events=[ics.Event(
-                name=self.title,
-                begin=begin,
-                end=end,
-                location=str(self.location)
-            )]))
+            tz = pytz.timezone(settings.TIME_ZONE)
+            begin = tz.localize(begin)
+            end = tz.localize(end)
 
-            self.ics_file = django.core.files.File(f, name='event.ics')
+            sout = cStringIO.StringIO()
+            sout.writelines(ics.Calendar(events=[
+                ics.Event(
+                    name=self.title,
+                    begin=begin,
+                    end=end,
+                    location=str(self.location),
+                    description=str(self)
+                )]))
+
+            self.ics_file = django.core.files.File(sout, 'event.ics')
+        else:
+            self.ics_file = None
 
         super(Event, self).save(**kwargs)
-
 
     def __str__(self):
         return '{}: {}'.format(self.get_event_type_display(), self.title)
