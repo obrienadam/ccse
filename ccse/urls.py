@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^events/', include('events.urls', namespace='events')),
     url(r'^news/', include('news.urls', namespace='news')),
     url(r'^research/', include('research.urls', namespace='research')),
+    url(r'^mailing-list/', include('mailing_list.urls', namespace='mailing-list'))
 ]
 
 from django.conf import settings

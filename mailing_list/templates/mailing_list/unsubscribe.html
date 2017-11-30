@@ -1,0 +1,38 @@
+{% extends '__base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Unsubscribe to Mailing List| {{ block.super }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            {% if success %}
+                <p>
+                    You have been unsubscribed to the mailing list and will no longer receive updates. If you wish to
+                    re-subscribe,
+                    you may do so <a href="{% url 'mailing-list:subscribtion-form' %}">here</a>.
+                </p>
+            {% else %}
+                <div class="panel panel-danger" style="margin-bottom:-19px;">
+                    <div class="panel-heading">Error: E-mail not found</div>
+                    <div class="panel-body">
+                        <p>
+                            You are currently not subscribed to the mailing list.
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+{% endblock %}

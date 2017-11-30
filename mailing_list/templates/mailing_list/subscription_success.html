@@ -1,0 +1,23 @@
+{% extends '__base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Mailing List Confirm E-mail | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Please confirm e-mail address</div>
+                <div class="panel-body">
+                    <p>
+                        In order to confirm that you are the owner of the provided e-mail address, please click on the
+                        activation link sent to {{ email }}.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

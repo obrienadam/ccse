@@ -1,0 +1,37 @@
+{% extends '__base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Mailing List Subscription Confirmed | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            {% if subscriber_confirmed %}
+                <div class="panel panel-success">
+                    <div class="panel-heading">Success! You have subscribed to the mailing list</div>
+                    <div class="panel-body">
+                        <p>
+                            Your confirmation was successful. You will receive e-mail updates about
+                            events, as well as other news from the CCSE.
+                        </p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="panel panel-danger" style="margin-bottom:-19px;">
+                    <div class="panel-heading">Error: Invalid confirmation token</div>
+                    <div class="panel-body">
+                        <p>
+                            An error occurred when attempting to confirm the provided e-mail address. The
+                            confirmation
+                            token was not found. If you believe this to be an error, please contact the CCSE
+                            organizing
+                            committee directly.
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
