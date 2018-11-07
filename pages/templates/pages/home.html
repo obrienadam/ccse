@@ -1,35 +1,147 @@
 {% extends '__base.html' %}
 
-{% block content %}
-    <div class="row">
-        <div class="col-lg-8">
+{% block jumbotron %}
+    <div class="jumbotron">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 widget">
-                    <h1>Latest News</h1>
-                    {% for item in news %}
-                        <h3>
-                            <a href="{% url 'news:article' item.pk %}">{{ item.title }}</a>
-                        </h3>
-                        <p>
-                            {% autoescape off %}{{ item.date_added.date }} - {{ item.abstract }}{% endautoescape %}... <a href="{% url 'news:article' item.pk %}"><em>Read More</em></a>
-                        </p>
-                        <hr>
-                    {% empty %}
-                        <p>No news items to display.</p>
-                    {% endfor %}
-                    <h4><a href="{% url 'news:news' %}">More news &raquo</a></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 widget">
-                    <h1>Mailing List</h1>
+                <div class="col-md-6">
+                    <h1>Centre for Computational Science and Engineering</h1>
                     <p>
-                        For students and faculty who wish to join the mailing list in order to receive information
-                        about upcoming events directly, click <a href="{% url 'mailing-list:subscribtion-form' %}">here</a> to join the mailing list.
+                        The Centre for Computational Science and Engineering (CCSE) was founded in 2016 by a group of
+                        students and professors from various faculties at the University of Toronto. The purpose of the
+                        group is to bring together researchers from a wide variety of computational disciplines, ranging
+                        from fluid mechanics to operations research.
                     </p>
+
+                    <a href="{% url 'pages:overview' %}">
+                        <button type="button" role="button" class="btn btn-primary">Read more</button>
+                    </a>
+
+                    <a href="{% url 'events:events' %}">
+                        <button type="button" role="button" class="btn btn-primary">View all events</button>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <!-- Overview -->
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if next_event %}
+                        <h1>
+                            Next Event
+                        </h1>
+                        <h3><a href="{% url 'events:event' next_event.slug next_event.pk %}">{{ next_event }}</a></h3>
+                        <p>
+                            <strong>Speaker(s): </strong>
+                            {% for presentation in next_event.presentation_set.all %}
+                                {% for speaker in presentation.presenter_set.all %}
+                                    {% if speaker.website %}
+                                        <a href="{{ speaker.website }}">{{ speaker }}</a>{% if not forloop.last %},
+                                    {% endif %}
+                                    {% else %}
+                                        {{ speaker }}{% if not forloop.last %}, {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </p>
+                        <p>
+                            <strong>Date/Time: </strong>
+                            {% if next_event.start_time %}
+                                {{ next_event.date }} {{ next_event.get_start }} - {{ next_event.get_end }}
+                            {% else %}
+                                TBD
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Location: </strong>
+                            {% if next_event.location %}
+                                {{ next_event.location }}
+                            {% else %}
+                                TBD
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Topic(s): </strong>
+                            {% for presentation in last_event.presentation_set.all %}
+                                {{ presentation.title }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                N/A
+                            {% endfor %}
+                        </p>
+                        {% if next_event.description %}
+                            <p>
+                                <strong>Description: </strong>
+                                {{ next_event.short_description }}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                    {% if last_event %}
+                        <h1>
+                            Last Event
+                        </h1>
+                        <h3><a href="{% url 'events:event' last_event.slug last_event.pk %}">{{ last_event }}</a></h3>
+                        <p>
+                            <strong>Speaker(s): </strong>
+                            {% for presentation in last_event.presentation_set.all %}
+                                {% for speaker in presentation.presenter_set.all %}
+                                    {% if speaker.website %}
+                                        <a href="{{ speaker.website }}">{{ speaker }}</a>{% if not forloop.last %},
+                                    {% endif %}
+                                    {% else %}
+                                        {{ speaker }}{% if not forloop.last %}, {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </p>
+                        <p>
+                            <strong>Date/Time: </strong>
+                            {{ event.date }}
+                            {% if event.start_time %}
+                                from {{ event.get_start }} - {{ event.get_end }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Date/Time: </strong>
+                            {% if last_event.start_time %}
+                                {{ last_event.date }} {{ last_event.get_start }} - {{ last_event.get_end }}<br>
+                            {% else %}
+                                TBD
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Topic(s): </strong>
+                            {% for presentation in last_event.presentation_set.all %}
+                                {{ presentation.title }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                N/A
+                            {% endfor %}
+                        </p>
+                        {% if last_event.description %}
+                            <p>
+                                <strong>Description: </strong>
+                                {{ last_event.short_description }}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <a class="twitter-timeline" href="https://twitter.com/AdamOBr83523589?ref_src=twsrc%5Etfw">Tweets by
+                AdamOBr83523589</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        {% comment %}
         <div class="col-lg-4">
             <div class="row">
                 <div class="col-md-12 widget">
@@ -37,7 +149,7 @@
                     <ul>
                         {% for event in upcoming_events %}
                             <li>
-                                <a href="{% url 'events:event' event.pk %} ">
+                                <a href="{% url 'events:event' event.slug event.pk %} ">
                                     {{ event }}
                                 </a>
                                 <p>
@@ -57,12 +169,14 @@
                         {% endfor %}
                     </ul>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 widget">
                     <h1 class="update-title">Recent Past Events</h1>
                     <ul>
                         {% for event in past_events %}
                             <li>
-                                <a href="{% url 'events:event' event.pk %} ">
+                                <a href="{% url 'events:event' event.slug event.pk %} ">
                                     {{ event }}
                                 </a>
                                 <p>
@@ -85,6 +199,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+            {% endcomment %}
+    </div>
     </div>
 {% endblock %}

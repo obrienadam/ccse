@@ -366,10 +366,56 @@ hr {
 }
 
 .row-flex {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .col-sm-4 {
- flex: 1;
+    flex: 1;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover {
+    color: #0099cc;
+    text-decoration: none;
+}
+
+.btn {
+    border: none;
+    background-color: #0099cc;
+    border-radius: 0px;
+}
+
+a:visited .btn
+{
+    background-color: #0099cc;
+}
+
+a:hover .btn
+{
+    background-color: #0099cc;
+    box-shadow: 1px 1px 6px white;
+}
+
+.jumbotron {
+    background-image: url("../img/cfd_banner.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-color: white;
+    height: 400px;
+}
+
+.jumbotron h1 {
+    font-size: 40px;
+    color: white;
+    text-shadow: 3px 3px 3px #0099cc;
+}
+
+.jumbotron p {
+    font-size: 14px;
+    color: white;
+}
+
+.jumbotron .btn {
+    background-color: #0099cc;
+    margin-right: 8px;
 }

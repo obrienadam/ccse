@@ -7,7 +7,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ field.name }}</h1>
+            <h1 class="page-header">{{ field.name }}</h1>
             {% if field.description %}
                 {% autoescape off %}
                     {{ field.render_description_html }}

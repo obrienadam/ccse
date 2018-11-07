@@ -35,11 +35,14 @@
 {% include '_header.html' %}
 {% include '_navbar.html' %}
 
-<div id="page">
+<main role="main">
+    {# optional carousel #}
+    {% block jumbotron %}{% endblock %}
+    <!-- Main block of page -->
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-</div>
+</main>
 
 <footer id="footer">
     <div class="container">

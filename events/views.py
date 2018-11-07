@@ -16,7 +16,7 @@ class EventsView(View):
         })
 
 class EventView(View):
-    def get(self, request, pk):
+    def get(self, request, slug, pk):
         event = get_object_or_404(Event, pk=pk, visible=True)
         return render(request,
                       'events/event.html',

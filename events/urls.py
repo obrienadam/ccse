@@ -4,5 +4,5 @@ from views import *
 
 urlpatterns = [
     url(r'^$', view=EventsView.as_view(), name='events'),
-    url(r'^(?P<pk>[0-9]+)/$', view=EventView.as_view(), name='event'),
+    url(r'^(?P<slug>[-\w\d]+)-(?P<pk>\d+)/$', view=EventView.as_view(), name='event')
 ]

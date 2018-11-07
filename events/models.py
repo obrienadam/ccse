@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 import django.core.files
 from django.conf import settings
+from django.utils.text import slugify
 
 import ics
 import pytz, datetime
@@ -33,6 +34,7 @@ class Event(models.Model):
     location = models.ForeignKey(locations.models.Room, blank=True, null=True)
     visible = models.BooleanField(default=False)
     ics_file = models.FileField(blank=True, null=True, upload_to=event_ics_file, max_length=None)
+    description = models.TextField(blank=True, null=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -40,8 +42,14 @@ class Event(models.Model):
     class Meta:
         ordering = ['-date', '-start_time', '-end_time']
 
+    def short_description(self, n=500):
+        return self.description[:n] + '...' if len(self.description) > n else self.description
+
     def pothole(self):
         return self.title.lower().replace(' ', '_')
+
+    def slug(self):
+        return slugify(self.__str__())
 
     def get_start(self):
         return self.start_time.strftime('%I:%M %p') if self.start_time else ''
