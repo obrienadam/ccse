@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from django.utils import timezone
@@ -14,7 +15,10 @@ class HomeView(View):
             'upcoming_events': upcoming_events,
             'past_events': past_events,
             'next_event': upcoming_events[0] if upcoming_events else None,
-            'last_event': past_events[0] if past_events else None
+            'last_event': past_events[0] if past_events else None,
+            'twitter_heading': settings.TWITTER_HEADING,
+            'twitter_url': settings.TWITTER_URL,
+            'twitter_data_tweet_limit': settings.TWITTER_DATA_TWEET_LIMIT
         })
 
 class OverviewView(TemplateView):

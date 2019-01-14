@@ -132,6 +132,11 @@ USE_TZ = True
 # API Keys
 GOOGLE_API_KEY = server_settings.GOOGLE_API_KEY
 
+# twitter feed
+TWITTER_HEADING = "Tweets by @CCSE"
+TWITTER_URL = "https://twitter.com/utccse?ref_src=twsrc%5Etfw"
+TWITTER_DATA_TWEET_LIMIT = 3
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
