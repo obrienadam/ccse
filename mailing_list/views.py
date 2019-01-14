@@ -26,7 +26,7 @@ class SubscribtionFormView(FormView):
         email = new_subscriber.email
         token = new_subscriber.confirmation_token
         conf_url = '{}?token={}'.format(self.request.build_absolute_uri(reverse('mailing-list:confirm-subscription')), token)
-
+	conf_url = conf_url.replace('http://', 'https://')
         message = """Thank you for subscribing to the CCSE mailing list! We hope to see you at an event in the near future.
         
 To confirm your e-mail address, please click on the following link:
