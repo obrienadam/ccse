@@ -22,7 +22,15 @@
                 {% for event in upcoming_events %}
                     <tr>
                         <td><a href="{% url 'events:event' event.slug event.pk %}">{{ event }}</a></td>
-                        <td></td>
+                        <td>
+                            {% for p in event.presentation_set.all %}
+                                {% for s in p.presenter_set.all %}
+                                    {{ s }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% empty %}
+                                TBD
+                            {% endfor %}
+                        </td>
                         <td>{{ event.date }}<br>
                             {% if event.start_time %}
                                 {{ event.get_start }} - {{ event.get_end }}</td>
@@ -44,23 +52,34 @@
             <table class="table table-responsive">
                 <thead>
                 <th>Event</th>
+                <th>Speaker(s)</th>
                 <th>Date/Time</th>
                 <th>Location</th>
-                <th></th>
                 </thead>
                 <tbody>
                 {% for event in past_events %}
                     <tr>
-                        <td>{{ event }}</td>
+                        <td><a href="{% url 'events:event' event.slug event.pk %}">{{ event }}</a></td>
+                        <td>
+                            {% for p in event.presentation_set.all %}
+                                {% for s in p.presenter_set.all %}
+                                    {{ s }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% empty %}
+                                TBD
+                            {% endfor %}
+                        </td>
                         <td>{{ event.date }}<br>
                             {% if event.start_time %}
-                                {{ event.get_start }} - {{ event.get_end }}
+                                {{ event.get_start }} - {{ event.get_end }}</td>
                             {% else %}
                                 Time TBD
                             {% endif %}
-                        </td>
                         <td>{{ event.location }}</td>
-                        <td><a href="{% url 'events:event' event.slug event.pk %}">View Details</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No upcoming events currently scheduled. Check back soon!</td>
                     </tr>
                 {% endfor %}
                 </tbody>
