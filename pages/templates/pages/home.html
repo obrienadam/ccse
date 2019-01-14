@@ -101,17 +101,16 @@
                         </p>
                         <p>
                             <strong>Date/Time: </strong>
-                            {{ event.date }}
-                            {% if event.start_time %}
-                                from {{ event.get_start }} - {{ event.get_end }}
+                            {% if last_event.start_time %}
+                                {{ last_event.date }} {{ last_event.get_start }} - {{ last_event.get_end }}
                             {% else %}
-                                N/A
+                                TBD
                             {% endif %}
                         </p>
                         <p>
-                            <strong>Date/Time: </strong>
-                            {% if last_event.start_time %}
-                                {{ last_event.date }} {{ last_event.get_start }} - {{ last_event.get_end }}<br>
+                            <strong>Location: </strong>
+                            {% if last_event.location %}
+                                {{ last_event.location }}
                             {% else %}
                                 TBD
                             {% endif %}

@@ -31,8 +31,7 @@
             </p>
             <h4>Location</h4>
             <p>
-                {% if next_event.location %}
-                    fd
+                {% if event.location %}
                     {{ room.building.name }} ({{ room.building.code }} {{ room.number }})<br>
                     {{ room.building.location.address_1 }}<br>
                     {% if room.building.location.address_2 %}
