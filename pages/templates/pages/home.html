@@ -68,7 +68,7 @@
                         </p>
                         <p>
                             <strong>Topic(s): </strong>
-                            {% for presentation in last_event.presentation_set.all %}
+                            {% for presentation in next_event.presentation_set.all %}
                                 {{ presentation.title }}{% if not forloop.last %}, {% endif %}
                             {% empty %}
                                 N/A
