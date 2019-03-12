@@ -24,6 +24,9 @@ class HomeView(View):
 class OverviewView(TemplateView):
     template_name = 'pages/overview.html'
 
+class Cses2019View(TemplateView):
+    template_name = 'pages/cses2019.html'
+
 class PeopleView(View):
     def get(self, request):
         return render(request, 'pages/people.html', {'students': StudentOrganizer.objects.all()})

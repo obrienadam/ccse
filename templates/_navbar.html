@@ -20,7 +20,13 @@
                     </ul>
                 </li>
 
-                <li id="events-link"><a class="nav-menu-link nav-separator-right" href="{% url 'events:events' %}">Events</a></li>
+                <li id="events-link" class="dropdown">
+                    <a class="dropdown-toggle nav-menu-link nav-separator-right" data-toggle="dropdown" href="#">Events <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'events:events' %}">General</a></li>
+                        <li><a href="{% url 'events:cses2019' %}">CSES2019</a></li>
+                    </ul>
+                </li>
 
                 <li id="research-link" class="dropdown">
                     <a class="dropdown-toggle nav-menu-link nav-separator-right" data-toggle="dropdown" href="#">Research <span class="caret"></span></a>
