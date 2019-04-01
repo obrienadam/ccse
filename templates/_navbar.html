@@ -11,14 +11,16 @@
             <ul class="nav navbar-nav">
                 <li id="home-link"><a class="nav-menu-link nav-separator-left nav-separator-right" href="{% url 'pages:home' %}">Home</a></li>
 
-                <li id="about-link" class="dropdown">
-                    <a class="nav-menu-link dropdown-toggle nav-separator-right" data-toggle="dropdown" href="">About <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'pages:overview' %}">Overview</a></li>
-                        <li><a href="{% url 'pages:people' %}">People</a></li>
-                        {# <li><a href="{% url 'news:news' %}">News</a></li> #}
-                    </ul>
-                </li>
+                <li id="about-link"><a class="nav-menu-link nav-separator-left nav-separator-right" href="{% url 'pages:overview' %}">About</a></li>
+
+                <!--<li id="about-link" class="dropdown">-->
+                    <!--<a class="nav-menu-link dropdown-toggle nav-separator-right" data-toggle="dropdown" href="">About <span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="{% url 'pages:overview' %}">Overview</a></li>-->
+                        <!--{# <li><a href="{% url 'pages:people' %}">People</a></li> #}-->
+                        <!--{# <li><a href="{% url 'news:news' %}">News</a></li> #}-->
+                    <!--</ul>-->
+                <!--</li>-->
 
                 <li id="events-link" class="dropdown">
                     <a class="dropdown-toggle nav-menu-link nav-separator-right" data-toggle="dropdown" href="#">Events <span class="caret"></span></a>
